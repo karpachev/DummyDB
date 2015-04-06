@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1428338410 source:c:\users\vasil\projects\dummydb\src\base\bytearray.cpp
+	"bytearray.h"
+	<iostream>
+	<string.h>
+
+1428338861 c:\users\vasil\projects\dummydb\src\base\bytearray.h
+
+1428338142 source:c:\users\vasil\projects\dummydb\src\base\key.cpp
+	"key.h"
+	<iostream>
+	<string.h>
+
+1428338762 c:\users\vasil\projects\dummydb\src\base\key.h
+	"bytearray.h"
+	<string>
+
+1428336219 source:c:\users\vasil\projects\dummydb\main.cpp
+	<iostream>
+	"key.h"
+
