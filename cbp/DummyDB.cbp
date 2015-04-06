@@ -31,6 +31,19 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="DummyDB_Tests">
+				<Option output="bin/DummyDB_Tests/DummyDB" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/DummyDB_Tests/" />
+				<Option object_output="obj/DummyDB_Tests/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -39,6 +52,7 @@
 		</Compiler>
 		<Unit filename="../README.md">
 			<Option target="Release" />
+			<Option target="DummyDB_Tests" />
 		</Unit>
 		<Unit filename="../main.cpp" />
 		<Unit filename="../src/base/bytearray.cpp" />

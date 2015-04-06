@@ -35,4 +35,21 @@ void ByteArray::validate(const unsigned int size)
 }
 
 
-} // namespace DummyDB
+std::string ByteArray::Get()
+{
+    char* result = new char[_size+1];
+    memcpy(result, _key, _size);
+    result[_size]= 0;
+    std::string result_string(result);
+    delete result;
+    return result_string;
+}
+
+void ByteArray::Get(char** key, unsigned int* size)
+{
+    *key= new char[_size];
+    memcpy(*key, _key, _size);
+    *size= _size;
+}
+
+} //namespace DummyDB// namespace DummyDB
