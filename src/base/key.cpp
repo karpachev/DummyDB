@@ -5,32 +5,25 @@ namespace DummyDB
 {
 
 
-Key::Key(void* const key, const unsigned int size)
+Key::Key(void* const key, const unsigned int size) :
+    ByteArray(key,size)
 {
-    validate(size);
-    copy(key,size);
+
 }
 
-Key::Key(const char* const key)
+Key::Key(const char* const key) :
+    ByteArray(key,strlen(key))
 {
-    int size = strlen(key);
-    validate(size);
-    copy(key,size);
 }
 
-Key::Key(const std::string& key)
+Key::Key(const std::string& key) :
+    ByteArray(key.c_str(), key.length())
 {
-    unsigned int size = key.length();
-    validate(size);
-    copy(key.c_str(),size);
 }
 
-void Key::validate(const int size)
+void Key::validate(const unsigned int size)
 {
-    if ( size<1 ) {
-        throw new std::string("Key::Key keys must be nonempty");
-        _size = 0;
-    }
+    ByteArray::validate(size);
 
     if ( size>Key::MAX_KEY_SIZE ) {
         throw new std::string("Key::Key Keys cannot exceed (maximum number bytes)");
@@ -38,19 +31,7 @@ void Key::validate(const int size)
     }
 }
 
-void Key::copy(const void* const key, const unsigned int size)
-{
-    _key = new char[size];
-    _size = size;
-    memcpy(_key, key, size);
-}
 
-Key::~Key()
-{
-    if (_size) {
-        delete _key;
-    }
-}
 
 
 
