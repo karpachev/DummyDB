@@ -13,8 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../../tests" />
-					<Add directory="../../src/base" />
+					<Add directory="../../../src" />
+					<Add directory="../../../tests" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -24,8 +24,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../../tests" />
-					<Add directory="../../src/base" />
+					<Add directory="../../../src" />
+					<Add directory="../../../tests" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,14 +36,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="../../src/base/bytearray.cpp" />
-		<Unit filename="../../src/base/bytearray.h" />
-		<Unit filename="../../src/base/key.cpp" />
-		<Unit filename="../../src/base/key.h" />
-		<Unit filename="../../tests/base/ByteArray_Test.cpp" />
-		<Unit filename="../../tests/catch.hpp" />
-		<Unit filename="../../tests/tests_main.cpp" />
-		<Unit filename="../../tests/tests_main.hpp" />
+		<Unit filename="../../../src/base/bytearray.cpp" />
+		<Unit filename="../../../src/base/bytearray.h" />
+		<Unit filename="../../../src/base/key.cpp" />
+		<Unit filename="../../../src/base/key.h" />
+		<Unit filename="../../../tests/base/ByteArray_Test.cpp" />
+		<Unit filename="../../../tests/catch.hpp" />
+		<Unit filename="../../../tests/tests_main.cpp" />
+		<Unit filename="../../../tests/tests_main.hpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

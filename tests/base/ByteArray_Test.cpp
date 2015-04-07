@@ -1,5 +1,5 @@
 #include "tests_main.hpp"
-#include "bytearray.h"
+#include "base/bytearray.h"
 #include <string.h>
 
 TEST_CASE( "ByteArray class is tested", "[key/value]" ) {

@@ -13,8 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="../" />
-					<Add directory="../src/base" />
+					<Add directory="../../../" />
+					<Add directory="../../../src" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -24,8 +24,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="../" />
-					<Add directory="../src/base" />
+					<Add directory="../../../src" />
+					<Add directory="../../../" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -50,15 +50,12 @@
 			<Add option="-fexceptions" />
 			<Add directory="C:/Users/Vasil/projects/DummyDB/" />
 		</Compiler>
-		<Unit filename="../README.md">
-			<Option target="Release" />
-			<Option target="DummyDB_Tests" />
-		</Unit>
-		<Unit filename="../main.cpp" />
-		<Unit filename="../src/base/bytearray.cpp" />
-		<Unit filename="../src/base/bytearray.h" />
-		<Unit filename="../src/base/key.cpp" />
-		<Unit filename="../src/base/key.h" />
+		<Unit filename="../../../README.md" />
+		<Unit filename="../../../main.cpp" />
+		<Unit filename="../../../src/base/bytearray.cpp" />
+		<Unit filename="../../../src/base/bytearray.h" />
+		<Unit filename="../../../src/base/key.cpp" />
+		<Unit filename="../../../src/base/key.h" />
 		<Extensions>
 			<code_completion>
 				<search_path add="C:\Users\Vasil\projects\DummyDB\" />

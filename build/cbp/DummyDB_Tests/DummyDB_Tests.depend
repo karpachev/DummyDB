@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1428384276 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
+	"base/bytearray.h"
+	<iostream>
+	<string.h>
+
+1428356240 /home/vasil/prj/DummyDB/src/base/bytearray.h
+	<string>
+
+1428384259 source:/home/vasil/prj/DummyDB/src/base/key.cpp
+	"base/key.h"
+	<iostream>
+	<string.h>
+
+1428350942 /home/vasil/prj/DummyDB/src/base/key.h
+	"bytearray.h"
+	<string>
+
