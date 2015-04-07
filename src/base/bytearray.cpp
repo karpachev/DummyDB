@@ -8,38 +8,56 @@ namespace DummyDB
 
 ByteArray::ByteArray(const void* const key, const unsigned int size)
 {
+    init();
     validate(size);
     copy(key,size);
 }
 
+ByteArray::ByteArray(const ByteArray& other)
+{
+    _data = other._data;
+    _data->IncRef();
+}
+
+ByteArray& ByteArray::operator=(const ByteArray& other)
+{
+    _data = other._data;
+    _data->IncRef();
+
+    return *this;
+}
+
+void ByteArray::init() {
+    _data = new ByteArraySharedData;
+    _data->IncRef();
+}
+
 ByteArray::~ByteArray()
 {
-    if (_size>0 && _key) {
-        delete _key;
-    }
+    _data->DecRef();
 }
 
 void ByteArray::copy(const void* const key, const unsigned int size)
 {
-    _key = new char[size];
-    _size = size;
-    memcpy(_key, key, size);
+    _data->_key = new char[size];
+    _data->_size = size;
+    memcpy(_data->_key, key, size);
 }
 
 void ByteArray::validate(const unsigned int size)
 {
     if ( size==0 ) {
+        _data->DecRef();
         throw new std::string("Key::Key keys must be nonempty");
-        _size = 0;
     }
 }
 
 
 std::string ByteArray::Get()
 {
-    char* result = new char[_size+1];
-    memcpy(result, _key, _size);
-    result[_size]= 0;
+    char* result = new char[_data->_size+1];
+    memcpy(result, _data->_key, _data->_size);
+    result[_data->_size]= 0;
     std::string result_string(result);
     delete result;
     return result_string;
@@ -47,9 +65,9 @@ std::string ByteArray::Get()
 
 void ByteArray::Get(char** key, unsigned int* size)
 {
-    *key= new char[_size];
-    memcpy(*key, _key, _size);
-    *size= _size;
+    *key= new char[_data->_size];
+    memcpy(*key, _data->_key, _data->_size);
+    *size= _data->_size;
 }
 
 } //namespace DummyDB// namespace DummyDB

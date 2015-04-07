@@ -26,8 +26,8 @@ void Key::validate(const unsigned int size)
     ByteArray::validate(size);
 
     if ( size>Key::MAX_KEY_SIZE ) {
+        _data->DecRef();
         throw new std::string("Key::Key Keys cannot exceed (maximum number bytes)");
-        _size = 0;
     }
 }
 

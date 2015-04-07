@@ -18,7 +18,6 @@ class Key : public ByteArray
 
 
         operator std::string ();
-        operator const char* ();
 
     private:
         void validate(const unsigned int size);
