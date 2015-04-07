@@ -1,6 +1,7 @@
 #ifndef BYTEARRAY_H
 #define BYTEARRAY_H
 #include <string>
+#include <boost/shared_ptr.hpp>
 namespace DummyDB
 {
 
@@ -27,37 +28,17 @@ class ByteArray
     protected:
         struct ByteArraySharedData
         {
-            public:
-                ByteArraySharedData() {
-                    _key = NULL;
-                    _size = 0;
-                    _ref_count = 0;
-                }
-                ~ByteArraySharedData() {
-                    if(_key) delete _key;
-                }
-
-
                 /// the location and size of the data
                 char* _key;
                 unsigned int _size;
 
-                /// the number of
-                int _ref_count;
-
-            public:
-                void IncRef() {
-                    _ref_count++;
-                }
-                void DecRef() {
-                    _ref_count--;
-                    if (_ref_count<=0) {
-                        delete this;
-                    }
+                ByteArraySharedData() {
+                    _key = NULL;
+                    _size = 0;
                 }
         };
 
-        ByteArraySharedData* _data;
+        boost::shared_ptr<ByteArraySharedData> _data;
 };
 
 } // namespace DummyDB

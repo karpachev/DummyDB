@@ -16,25 +16,21 @@ ByteArray::ByteArray(const void* const key, const unsigned int size)
 ByteArray::ByteArray(const ByteArray& other)
 {
     _data = other._data;
-    _data->IncRef();
 }
 
 ByteArray& ByteArray::operator=(const ByteArray& other)
 {
     _data = other._data;
-    _data->IncRef();
 
     return *this;
 }
 
 void ByteArray::init() {
-    _data = new ByteArraySharedData;
-    _data->IncRef();
+    _data = boost::shared_ptr<ByteArraySharedData>( new ByteArraySharedData );
 }
 
 ByteArray::~ByteArray()
 {
-    _data->DecRef();
 }
 
 void ByteArray::copy(const void* const key, const unsigned int size)
@@ -47,7 +43,6 @@ void ByteArray::copy(const void* const key, const unsigned int size)
 void ByteArray::validate(const unsigned int size)
 {
     if ( size==0 ) {
-        _data->DecRef();
         throw new std::string("Key::Key keys must be nonempty");
     }
 }

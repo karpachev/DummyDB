@@ -15,6 +15,7 @@
 					<Add option="-g" />
 					<Add directory="../../../src" />
 					<Add directory="../../../tests" />
+					<Add directory="../../../vendor" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +27,7 @@
 					<Add option="-O2" />
 					<Add directory="../../../src" />
 					<Add directory="../../../tests" />
+					<Add directory="../../../vendor" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

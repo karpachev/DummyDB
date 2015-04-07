@@ -15,9 +15,7 @@
 					<Add option="-g" />
 					<Add directory="../../../" />
 					<Add directory="../../../src" />
-					<Add directory="src/tablet" />
-					<Add directory="base" />
-					<Add directory="src/base" />
+					<Add directory="../../../vendor" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
