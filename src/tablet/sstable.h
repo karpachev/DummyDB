@@ -1,5 +1,6 @@
 #ifndef SSTABLE_H
 #define SSTABLE_H
+#include "base/result.h"
 #include "tablet/memtable.h"
 namespace DummyDB
 {
@@ -13,9 +14,10 @@ class SSTable
         SSTable(const std::string& file);
         virtual ~SSTable();
 
-        Value&      search(const Key& ) const;
-        std::vector<Value>
-                    prefixSearch(const Key& ) const;
+        Result<Value>       search(const Key& ) const;
+        Result< std::vector<Value> >
+                            prefixScan(const Key& ) const;
+        Result<Value>       remove(const Key& );
 
 
     protected:

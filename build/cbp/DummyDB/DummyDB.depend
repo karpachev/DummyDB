@@ -22,16 +22,16 @@
 	"base/key.h"
 	"boost/shared_ptr.hpp"
 
-1428434214 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
+1428522344 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
 	"base/bytearray.h"
 	<iostream>
 	<string.h>
 
-1428434103 /home/vasil/prj/DummyDB/src/base/bytearray.h
+1428522344 /home/vasil/prj/DummyDB/src/base/bytearray.h
 	<string>
 	<boost/shared_ptr.hpp>
 
-1428433401 source:/home/vasil/prj/DummyDB/main.cpp
+1428529418 source:/home/vasil/prj/DummyDB/main.cpp
 	<iostream>
 	"base/key.h"
 	"boost/shared_ptr.hpp"
@@ -68,14 +68,17 @@
 1428426344 source:/home/vasil/prj/DummyDB/src/tablet/memtable.cpp
 	"memtable.h"
 
-1428426344 /home/vasil/prj/DummyDB/src/tablet/memtable.h
+1428522344 /home/vasil/prj/DummyDB/src/tablet/memtable.h
 	"base/key.h"
 	"base/value.h"
+	<vector>
 
-1428426344 source:/home/vasil/prj/DummyDB/src/tablet/sstable.cpp
+1428522344 source:/home/vasil/prj/DummyDB/src/tablet/sstable.cpp
 	"tablet/sstable.h"
 
-1428426344 /home/vasil/prj/DummyDB/src/tablet/sstable.h
+1428528924 /home/vasil/prj/DummyDB/src/tablet/sstable.h
+	"base/result.h"
+	"tablet/memtable.h"
 
 1428430258 /home/vasil/prj/DummyDB/vendor/boost/shared_ptr.hpp
 	<boost/smart_ptr/shared_ptr.hpp>
@@ -4569,4 +4572,15 @@
 	"commitlog.h"
 
 1428499935 c:\users\vasil\projects\dummydb\src\tablet\commitlog.h
+
+1428528535 source:/home/vasil/prj/DummyDB/src/base/result.cpp
+
+1428522344 source:/home/vasil/prj/DummyDB/src/tablet/commitlog.cpp
+	"commitlog.h"
+
+1428522344 /home/vasil/prj/DummyDB/src/tablet/commitlog.h
+
+1428528883 /home/vasil/prj/DummyDB/src/base/result.h
+	"base/key.h"
+	"base/value.h"
 

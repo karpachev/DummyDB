@@ -2,6 +2,7 @@
 #define MEMTABLE_H
 #include "base/key.h"
 #include "base/value.h"
+#include "base/result.h"
 #include <vector>
 namespace DummyDB
 {
@@ -12,12 +13,12 @@ class MemTable
         MemTable();
         virtual ~MemTable();
 
-        void        Add(const Key& key, const Value& value);
-        Value&      Remove(const Key&);
+        Result<Value>   add(const Key& key, const Value& value);
+        Result<Value>   remove(const Key&);
 
-        Value&      search(const Key& ) const;
-        std::vector<Value>
-                    prefixSearch(const Key& ) const;
+        Result<Value>   get(const Key& ) const;
+        Result< std::vector<Value> >
+                        prefixSearch(const Key& ) const;
 
     protected:
     private:
