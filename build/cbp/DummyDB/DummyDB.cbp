@@ -16,6 +16,7 @@
 					<Add directory="../../../" />
 					<Add directory="../../../src" />
 					<Add directory="../../../vendor" />
+					<Add directory="src/tablet" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -49,6 +50,8 @@
 		<Unit filename="../../../src/base/key.h" />
 		<Unit filename="../../../src/base/value.cpp" />
 		<Unit filename="../../../src/base/value.h" />
+		<Unit filename="../../../src/tablet/commitlog.cpp" />
+		<Unit filename="../../../src/tablet/commitlog.h" />
 		<Unit filename="../../../src/tablet/memtable.cpp" />
 		<Unit filename="../../../src/tablet/memtable.h" />
 		<Unit filename="../../../src/tablet/sstable.cpp" />

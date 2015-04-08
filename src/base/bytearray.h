@@ -9,31 +9,43 @@ namespace DummyDB
 class ByteArray
 {
     public:
-        ByteArray(const void* const key, const unsigned int size);
-        ByteArray(const ByteArray& other);
-        ByteArray& operator=(const ByteArray& other);
+        ByteArray(const void* const key, const unsigned int size){
+            init();
+            validate(size);
+            copy(key,size);
+        }
+        ByteArray(const ByteArray& other) {
+            _data = other._data;
+        }
+        ByteArray& operator= (const ByteArray& other) {
+            _data = other._data;
+            return *this;
+        }
         virtual ~ByteArray();
 
-        std::string Get();
-        int GetSize() { return _data->_size; }
-        void Get(char** key, unsigned int* size);
+        std::string toString() const;
+        operator std::string() const {
+            return toString();
+        }
+        int bufferSize() const { return _data->_size; }
+        void rawBuffer(char** key, unsigned int* size) const;
 
     protected:
         virtual void validate(const unsigned int size);
 
     private:
-        inline void copy(const void* const key, const unsigned int size);
-        inline void init();
+        void copy(const void* const key, const unsigned int size);
+        void init();
 
     protected:
         struct ByteArraySharedData
         {
                 /// the location and size of the data
-                char* _key;
+                char* _buffer;
                 unsigned int _size;
 
                 ByteArraySharedData() {
-                    _key = NULL;
+                    _buffer = NULL;
                     _size = 0;
                 }
         };

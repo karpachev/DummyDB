@@ -2,7 +2,7 @@
 namespace DummyDB
 {
 
-SSTable::SSTable()
+SSTable::SSTable(const MemTable&)
 {
     //ctor
 }

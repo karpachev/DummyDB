@@ -7,10 +7,8 @@ using namespace std;
 int main()
 {
     DummyDB::Key key("vasil");
-    cout << "Hello world!!!" << endl;
-
     boost::shared_ptr<DummyDB::Key> p( new DummyDB::Key("vasil1") );
     boost::shared_ptr<DummyDB::Key> p1 = p;
-    cout << p1->Get();
+    cout << p1->toString();
     return 0;
 }

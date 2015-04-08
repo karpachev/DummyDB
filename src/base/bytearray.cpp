@@ -6,25 +6,6 @@ namespace DummyDB
 {
 
 
-ByteArray::ByteArray(const void* const key, const unsigned int size)
-{
-    init();
-    validate(size);
-    copy(key,size);
-}
-
-ByteArray::ByteArray(const ByteArray& other)
-{
-    _data = other._data;
-}
-
-ByteArray& ByteArray::operator=(const ByteArray& other)
-{
-    _data = other._data;
-
-    return *this;
-}
-
 void ByteArray::init() {
     _data = boost::shared_ptr<ByteArraySharedData>( new ByteArraySharedData );
 }
@@ -35,9 +16,9 @@ ByteArray::~ByteArray()
 
 void ByteArray::copy(const void* const key, const unsigned int size)
 {
-    _data->_key = new char[size];
+    _data->_buffer = new char[size];
     _data->_size = size;
-    memcpy(_data->_key, key, size);
+    memcpy(_data->_buffer, key, size);
 }
 
 void ByteArray::validate(const unsigned int size)
@@ -48,20 +29,20 @@ void ByteArray::validate(const unsigned int size)
 }
 
 
-std::string ByteArray::Get()
+std::string ByteArray::toString() const
 {
     char* result = new char[_data->_size+1];
-    memcpy(result, _data->_key, _data->_size);
+    memcpy(result, _data->_buffer, _data->_size);
     result[_data->_size]= 0;
     std::string result_string(result);
     delete result;
     return result_string;
 }
 
-void ByteArray::Get(char** key, unsigned int* size)
+void ByteArray::rawBuffer(char** key, unsigned int* size) const
 {
     *key= new char[_data->_size];
-    memcpy(*key, _data->_key, _data->_size);
+    memcpy(*key, _data->_buffer, _data->_size);
     *size= _data->_size;
 }
 

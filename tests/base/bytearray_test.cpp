@@ -12,7 +12,7 @@ TEST_CASE( "ByteArray class is tested", "[key/value]" ) {
    SECTION( "Check that 'std::string Get()' matches the original keys" ) {
         for (int i=0;i<3;i++) {
             DummyDB::ByteArray bytearray(keys[i],strlen(keys[i]));
-            REQUIRE( bytearray.Get() == std::string(keys[i]) );
+            REQUIRE( bytearray.toString() == std::string(keys[i]) );
         }
     }
 
@@ -21,16 +21,18 @@ TEST_CASE( "ByteArray class is tested", "[key/value]" ) {
             DummyDB::ByteArray bytearray(keys[i],strlen(keys[i]));
             char* k;
             unsigned int k_size;
-            bytearray.Get(&k,&k_size);
+            bytearray.rawBuffer(&k,&k_size);
             REQUIRE( memcmp(k,keys[i],k_size)==0  );
         }
     }
 
-    SECTION( "Check that Get(&k,&k_size) matches the origional keys" ) {
+    SECTION( "Copy constructor and operator= " ) {
         DummyDB::ByteArray p1(keys[0],strlen(keys[0]));
         DummyDB::ByteArray p2 = p1;
-        REQUIRE( p2.Get() == std::string(keys[0]) );
-        REQUIRE( p2.Get().c_str() == keys[0] );
+        DummyDB::ByteArray p3(keys[1],strlen(keys[1]));
+        REQUIRE( std::string(keys[0]) == p2.toString() );
+        p3 = p2;
+        REQUIRE( std::string(keys[0]) == p3.toString() );
     }
 
 
