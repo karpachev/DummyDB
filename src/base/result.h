@@ -12,7 +12,7 @@ struct Result
         Result() {
             status = false;
         }
-        Result(T& v, bool st = false) {
+        Result(const T& v, bool st = true) {
             value = v;
             status = st;
         }

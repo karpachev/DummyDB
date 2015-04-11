@@ -35,6 +35,32 @@ TEST_CASE( "ByteArray class is tested", "[key/value]" ) {
         REQUIRE( std::string(keys[0]) == p3.toString() );
     }
 
+    SECTION( "Check comparison operators" ) {
+        DummyDB::ByteArray empty(NULL, 0);
+        REQUIRE( empty == empty );
+        REQUIRE( !(empty < empty) );
+        REQUIRE( !(empty > empty) );
 
+        DummyDB::ByteArray aa("aa", strlen("aa"));
+        REQUIRE( !(empty == aa) );
+        REQUIRE( empty < aa );
+        REQUIRE( !(empty > aa) );
+
+        DummyDB::ByteArray aaa("aaa", strlen("aaa"));
+        REQUIRE( aa < aaa );
+        REQUIRE( !(aa > aaa) );
+        REQUIRE( aaa > aa );
+        REQUIRE( !(aaa < aa) );
+
+        DummyDB::ByteArray aba("aba", strlen("aba"));
+        REQUIRE( aa < aba );
+        REQUIRE( !(aa > aba) );
+        REQUIRE( aaa < aba );
+        REQUIRE( !(aaa > aba) );
+        REQUIRE( aba > aa );
+        REQUIRE( !(aba < aa) );
+        REQUIRE( aba > aaa );
+        REQUIRE( !(aba < aaa) );
+    }
 }
 

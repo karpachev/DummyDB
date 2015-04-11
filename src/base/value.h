@@ -10,11 +10,16 @@ class Value : public ByteArray
         static const unsigned int MAX_VALUE_SIZE = 1024*1024;
 
     public:
-        Value(void* const key, const unsigned int size);
+        Value(const void* const value, const unsigned int size):
+            ByteArray(value,size) { }
+        Value(const char* const str);
+        Value(std::string str): ByteArray(str.c_str(), str.length()) { }
+        Value():
+            ByteArray(NULL,0) { }
 
 
     private:
-        void validate(const unsigned int size);
+        bool validate(const unsigned int size);
 
 };
 

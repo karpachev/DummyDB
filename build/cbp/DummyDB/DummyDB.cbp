@@ -48,6 +48,8 @@
 		<Unit filename="../../../src/base/bytearray.h" />
 		<Unit filename="../../../src/base/key.cpp" />
 		<Unit filename="../../../src/base/key.h" />
+		<Unit filename="../../../src/base/result.cpp" />
+		<Unit filename="../../../src/base/result.h" />
 		<Unit filename="../../../src/base/value.cpp" />
 		<Unit filename="../../../src/base/value.h" />
 		<Unit filename="../../../src/tablet/commitlog.cpp" />

@@ -18,9 +18,8 @@ class Key : public ByteArray
 
 
         operator std::string ();
-
     private:
-        void validate(const unsigned int size);
+        bool validate(const unsigned int size);
 
     private:
 };

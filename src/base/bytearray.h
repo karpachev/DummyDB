@@ -30,8 +30,13 @@ class ByteArray
         int bufferSize() const { return _data->_size; }
         void rawBuffer(char** key, unsigned int* size) const;
 
+        bool operator == (const ByteArray& other) const;
+        bool operator > (const ByteArray& other) const;
+        bool operator < (const ByteArray& other) const;
     protected:
-        virtual void validate(const unsigned int size);
+        virtual bool validate(const unsigned int size) {
+            return true;
+        }
 
     private:
         void copy(const void* const key, const unsigned int size);

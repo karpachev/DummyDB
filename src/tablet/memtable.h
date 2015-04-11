@@ -13,15 +13,19 @@ class MemTable
         MemTable();
         virtual ~MemTable();
 
-        Result<Value>   add(const Key& key, const Value& value);
+        Result<Value>   set(const Key& key, const Value& value);
         Result<Value>   remove(const Key&);
 
         Result<Value>   get(const Key& ) const;
         Result< std::vector<Value> >
                         prefixSearch(const Key& ) const;
 
+        unsigned int    numbElements() { return mem_table.size(); }
+
     protected:
     private:
+        std::vector< std::pair<Key,Value> >
+                        mem_table;
 };
 
 } // namespace DummyDB

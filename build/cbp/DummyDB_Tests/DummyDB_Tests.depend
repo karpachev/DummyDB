@@ -1,19 +1,19 @@
 # depslib dependency file v1.0
-1428434214 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
+1428734608 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
 	"base/bytearray.h"
 	<iostream>
 	<string.h>
 
-1428434103 /home/vasil/prj/DummyDB/src/base/bytearray.h
+1428688299 /home/vasil/prj/DummyDB/src/base/bytearray.h
 	<string>
 	<boost/shared_ptr.hpp>
 
-1428434222 source:/home/vasil/prj/DummyDB/src/base/key.cpp
+1428683840 source:/home/vasil/prj/DummyDB/src/base/key.cpp
 	"base/key.h"
 	<iostream>
 	<string.h>
 
-1428426344 /home/vasil/prj/DummyDB/src/base/key.h
+1428687618 /home/vasil/prj/DummyDB/src/base/key.h
 	"bytearray.h"
 	<string>
 
@@ -140,10 +140,12 @@
 1428391998 source:c:\users\vasil\projects\dummydb\tests\tests_main.cpp
 	"tests_main.hpp"
 
-1428426344 source:/home/vasil/prj/DummyDB/src/tablet/sstable.cpp
+1428522344 source:/home/vasil/prj/DummyDB/src/tablet/sstable.cpp
 	"tablet/sstable.h"
 
-1428426344 /home/vasil/prj/DummyDB/src/tablet/sstable.h
+1428528924 /home/vasil/prj/DummyDB/src/tablet/sstable.h
+	"base/result.h"
+	"tablet/memtable.h"
 
 1428354925 source:/home/vasil/prj/DummyDB/tests/tests_main.cpp
 	"tests_main.hpp"
@@ -2500,7 +2502,7 @@
 
 1428430259 /home/vasil/prj/DummyDB/vendor/boost/smart_ptr/detail/operator_bool.hpp
 
-1428434794 source:/home/vasil/prj/DummyDB/tests/base/bytearray_test.cpp
+1428734679 source:/home/vasil/prj/DummyDB/tests/base/bytearray_test.cpp
 	"tests_main.hpp"
 	"base/bytearray.h"
 	<string.h>
@@ -4764,4 +4766,44 @@
 	"base/bytearray.h"
 	<iostream>
 	<string.h>
+
+1428690888 /home/vasil/prj/DummyDB/src/base/result.h
+	"base/key.h"
+	"base/value.h"
+
+1428738690 /home/vasil/prj/DummyDB/src/base/value.h
+	"base/bytearray.h"
+
+1428738792 /home/vasil/prj/DummyDB/src/tablet/memtable.h
+	"base/key.h"
+	"base/value.h"
+	"base/result.h"
+	<vector>
+
+1428681620 source:/home/vasil/prj/DummyDB/tests/tablet/sstable.cpp
+	"tests_main.hpp"
+	"tablet/sstable.h"
+	<string.h>
+
+1428738597 source:/home/vasil/prj/DummyDB/tests/tablet/memtable_test.cpp
+	"tests_main.hpp"
+	"tablet/memtable.h"
+	<string.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1428737827 source:/home/vasil/prj/DummyDB/src/base/value.cpp
+	"base/value.h"
+	"string.h"
+
+1428528535 source:/home/vasil/prj/DummyDB/src/base/result.cpp
+
+1428522344 source:/home/vasil/prj/DummyDB/src/tablet/commitlog.cpp
+	"commitlog.h"
+
+1428522344 /home/vasil/prj/DummyDB/src/tablet/commitlog.h
+
+1428738046 source:/home/vasil/prj/DummyDB/src/tablet/memtable.cpp
+	"memtable.h"
 

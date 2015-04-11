@@ -21,13 +21,16 @@ Key::Key(const std::string& key) :
 {
 }
 
-void Key::validate(const unsigned int size)
+bool Key::validate(const unsigned int size)
 {
-    ByteArray::validate(size);
-
+    if ( size==0 ) {
+        throw new std::string("Key::Key Keys cannot be empty");
+    }
     if ( size>Key::MAX_KEY_SIZE ) {
         throw new std::string("Key::Key Keys cannot exceed (maximum number bytes)");
     }
+
+    return true;
 }
 
 
