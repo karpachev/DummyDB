@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1428734608 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
+1428859348 source:/home/vasil/prj/DummyDB/src/base/bytearray.cpp
 	"base/bytearray.h"
 	<iostream>
 	<string.h>
 
-1428688299 /home/vasil/prj/DummyDB/src/base/bytearray.h
+1428859356 /home/vasil/prj/DummyDB/src/base/bytearray.h
 	<string>
 	<boost/shared_ptr.hpp>
 
@@ -4785,7 +4785,7 @@
 	"tablet/sstable.h"
 	<string.h>
 
-1428842416 source:/home/vasil/prj/DummyDB/tests/tablet/memtable_test.cpp
+1428856848 source:/home/vasil/prj/DummyDB/tests/tablet/memtable_test.cpp
 	"tests_main.hpp"
 	"tablet/memtable.h"
 	<iostream>
@@ -4808,5 +4808,21 @@
 1428842293 source:/home/vasil/prj/DummyDB/src/tablet/memtable.cpp
 	"memtable.h"
 	<iostream>
+	<stdio.h>
+
+1428859626 source:/home/vasil/prj/DummyDB/src/base/sorted_block.cpp
+	"sorted_block.h"
+	<stdio.h>
+
+1428858980 /home/vasil/prj/DummyDB/src/base/sorted_block.h
+	"base/key.h"
+	"base/value.h"
+	"base/result.h"
+	<vector>
+
+1428859601 source:/home/vasil/prj/DummyDB/tests/base/sorted_block_test.cpp
+	"tests_main.hpp"
+	"base/sorted_block.h"
+	<string.h>
 	<stdio.h>
 

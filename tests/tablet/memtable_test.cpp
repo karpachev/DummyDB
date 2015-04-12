@@ -30,7 +30,6 @@ TEST_CASE( "Memtable class is being tested", "[]" )
             mem_table.set(key,value);
             i++;
         }
-        //std::cout << i << std::endl;
     }
 
 

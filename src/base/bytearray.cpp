@@ -44,11 +44,24 @@ void ByteArray::rawBuffer(char** key, unsigned int* size) const
 
 bool ByteArray::operator == (const ByteArray& other) const {
     // when different sizes -> cannot be equal
-    if (_data->_size!=other._data->_size) {
+    if (_data->_size != other._data->_size) {
         return false;
     }
     // After here -> they are equal
     // If both are empty -> they are equal
+    if (_data->_size==0) {
+        return true;
+    }
+    // They are equal only when they match byte by byte
+    return memcmp(_data->_buffer, other._data->_buffer, _data->_size)==0;
+}
+
+bool ByteArray::operator |= (const ByteArray& other) const {
+    // when *this is longer than other -> cannot be prefix
+    if (_data->_size > other._data->_size) {
+        return false;
+    }
+    // The empty bytearray is prefix of everything
     if (_data->_size==0) {
         return true;
     }
