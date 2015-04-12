@@ -22,7 +22,12 @@ class MemTable
 
         unsigned int    numbElements() { return mem_table.size(); }
 
+        /// Printout the table to the stdout.. Mostly for debuggin
+        void            toStdout();
+
     protected:
+        /// Find the index of Key, or -1 otherwise
+        int             indexOf(const Key& ) const;
     private:
         std::vector< std::pair<Key,Value> >
                         mem_table;
