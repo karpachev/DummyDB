@@ -44,6 +44,8 @@
 		<Unit filename="../../../src/base/key.h" />
 		<Unit filename="../../../src/base/result.cpp" />
 		<Unit filename="../../../src/base/result.h" />
+		<Unit filename="../../../src/base/sorted_block.cpp" />
+		<Unit filename="../../../src/base/sorted_block.h" />
 		<Unit filename="../../../src/base/value.cpp" />
 		<Unit filename="../../../src/base/value.h" />
 		<Unit filename="../../../src/tablet/commitlog.cpp" />
@@ -53,6 +55,7 @@
 		<Unit filename="../../../src/tablet/sstable.cpp" />
 		<Unit filename="../../../src/tablet/sstable.h" />
 		<Unit filename="../../../tests/base/bytearray_test.cpp" />
+		<Unit filename="../../../tests/base/sorted_block_test.cpp" />
 		<Unit filename="../../../tests/catch.hpp" />
 		<Unit filename="../../../tests/tablet/memtable_test.cpp" />
 		<Unit filename="../../../tests/tablet/sstable.cpp" />

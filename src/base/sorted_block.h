@@ -21,16 +21,21 @@ class SortedBlock
         Result<Value>   remove(const Key&);
 
         Result<Value>   get(const Key& ) const;
-        Result< std::vector<Value> >
+        Result<SortedBlock>
                         prefixSearch(const Key& ) const;
 
-        unsigned int    numbElements() { return block.size(); }
+        unsigned int    size() { return block.size(); }
+        std::pair<Key,Value>
+                        operator[] (unsigned int i){return block[i];}
 
         /// Printout the table to the stdout.. Mostly for debuggin
         void            toStdout();
     protected:
         /// Find the index of Key, or -1 otherwise
-        int             indexOf(const Key&, bool (*compare)(const Key&, const Key&) ) const;
+        Result< std::vector<int> >
+                        indexOf(const Key&, bool (*compare)(const Key&, const Key&) ) const;
+        int
+                        indexOfSplit(const Key&, int index_min, int index_max, bool lower_range) const;
 
     private:
         std::vector< std::pair<Key,Value> >

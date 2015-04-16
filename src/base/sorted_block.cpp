@@ -47,27 +47,29 @@ bool prefix_equal_keys(const Key& a, const Key& b) {
 Result<Value>
 SortedBlock::remove(const Key& key)
 {
-    int index = indexOf(key,equal_keys);
-    if (index==-1) {
+    Result< std::vector<int> > index = indexOf(key,equal_keys);
+    if (index.status==false) {
         // not found - emptyr result
         return Result<Value>();
     }
+    const int& index_found= index.value[0];
 
-    Result<Value> result(block[index].second);
-    block.erase( block.begin()+index );
+    Result<Value> result(block[index_found].second);
+    block.erase( block.begin()+index_found );
     return result;
 }
 
 Result<Value>
 SortedBlock::get(const Key& key) const
 {
-    int index = indexOf(key,equal_keys);
-    if (index==-1) {
+    Result< std::vector<int> > index = indexOf(key,equal_keys);
+    if (index.status==false) {
         // not found - emptyr result
         return Result<Value>();
     }
-
-    return Result<Value>(block[index].second);
+    // index.value[0] is the index of the found entry
+    const int& index_found= index.value[0];
+    return Result<Value>(block[index_found].second);
 }
 
 
@@ -76,23 +78,31 @@ SortedBlock::get(const Key& key) const
 /**
   * Perform a binary sarch to find a matching entry
   * in the sorted map_table.
-  * @return -1 - not found
-  *         <index> - the index of the found entry
+  * @return Result.status==false - not found
+  *         Result.value[0] - the index of the found entry
+  *         Result.value[1] - the max index of the last step
+  *         Result.value[2] - the min index of the last step
   */
-int
+Result< std::vector<int> >
 SortedBlock::indexOf(const Key& key, bool (*compare)(const Key& a, const Key& b) ) const
 {
+    Result< std::vector<int> > result;
     int min_index =0,
                     max_index = block.size()-1;
     if (max_index==0) {
-        return -1; // Not found: table still empty
+        return result; // Not found: table still empty
     }
 
     while(min_index<=max_index) {
         int middle_index = (min_index+max_index)/2;
 
         if ( compare(key, block[middle_index].first) ) {
-            return middle_index; // Found
+            // Found
+            result.status = true;
+            result.value.push_back(middle_index);
+            result.value.push_back(max_index);
+            result.value.push_back(min_index);
+            return result;
         }
 
         if ( key < block[middle_index].first ) {
@@ -102,24 +112,94 @@ SortedBlock::indexOf(const Key& key, bool (*compare)(const Key& a, const Key& b)
         }
     }
 
-    // Binnary search not successfull
-    return -1;
-}
-
-Result< std::vector<Value> >
-SortedBlock::prefixSearch(const Key& key) const
-{
-    Result< std::vector<Value> > result;
-    int index = indexOf(key,prefix_equal_keys);
-    if (index==-1) {
-        // not found - emptyr result
-        return result;
-    }
-
-    printf("Found prefix: %d\r\n", index);
-    //return Result<Value>(block[index].second);
+    // Binary search not successful
     return result;
 }
+
+Result<SortedBlock>
+SortedBlock::prefixSearch(const Key& key) const
+{
+    Result<SortedBlock> result;
+    Result< std::vector<int> > index = indexOf(key, prefix_equal_keys);
+    if (index.status==false) {
+        // not found - empty result
+        return result;
+    }
+    // index.value[0] is the index of a matching key
+    // index.value[1] is the index of a bigger key
+    // index.value[2] is the index of a lesser key
+    const int& index_found = index.value[0];
+    const int& index_max = index.value[1];
+    const int& index_min = index.value[2];
+
+    const int& low_bound = indexOfSplit(key, index_min, index_found, true);
+    const int& high_bound = indexOfSplit(key, index_found, index_max, false);
+
+    result.status=true;
+    result.value.block = std::vector< std::pair<Key,Value> >(
+                block.begin()+low_bound,
+                block.begin()+high_bound+1
+    );
+    return result;
+}
+
+int
+SortedBlock::indexOfSplit(const Key& key, int index_min, int index_max, bool lower_range) const
+{
+    do
+    {
+        bool min_found = key |= block[index_min].first;
+        bool max_found = key |= block[index_max].first;
+        if (min_found&&max_found) {
+            // the whole range is of identical keys.
+            if (lower_range) {
+                // In the low range the split must be the first key
+                return index_min;
+            } else {
+                // In the higher range the split must be the first key
+                return index_max;
+            }
+        }
+        if (!min_found&&!max_found) {
+            // the whole range is of different keys.
+            if (lower_range) {
+                // In the low range the split must be the first key
+                return index_max-1;
+            } else {
+                // In the higher range the split must be the first key
+                return index_min+1;
+            }
+        }
+
+
+        int index_middle = (index_min+index_max)/2;
+        bool middle_found = key |= block[index_middle].first;
+
+        if (min_found) {
+            if(middle_found) {
+                // split must in in the [index_middle,index_max]
+                index_min = index_middle+1;
+            } else {
+                // split must in in the [index_min,index_middle)
+                index_max = index_middle-1;
+            }
+        }
+
+        if (max_found) {
+            if(middle_found) {
+                // split must in in the [index_min,index_middle)
+                index_max = index_middle-1;
+            } else {
+                // split must in in the [index_middle,index_max]
+                index_min = index_middle+1;
+            }
+        }
+
+    } while (index_min<=index_max);
+
+    return 1;
+}
+
 
 void
 SortedBlock::toStdout() {
