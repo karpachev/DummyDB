@@ -57,6 +57,7 @@
 		<Unit filename="../../../tests/base/bytearray_test.cpp" />
 		<Unit filename="../../../tests/base/sorted_block_test.cpp" />
 		<Unit filename="../../../tests/catch.hpp" />
+		<Unit filename="../../../tests/failted_tests.txt" />
 		<Unit filename="../../../tests/tablet/memtable_test.cpp" />
 		<Unit filename="../../../tests/tablet/sstable.cpp" />
 		<Unit filename="../../../tests/tests_main.cpp" />
