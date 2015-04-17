@@ -50,7 +50,7 @@ TEST_CASE( "SortedBlock class is being tested", "" ) {
         {
             int NUM_KEYS = rand()%500000;
             std::string prefix;// = "ARMANDO";
-            for (j=0;j<rand()%135+20;j++) {
+            for (int j=0;j<rand()%135+20;j++) {
                 prefix.push_back( (rand()%2?'a':'A')+rand()%26);
             }
             int   number_keys_with_prefix= 0;

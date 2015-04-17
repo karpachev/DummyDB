@@ -1,7 +1,9 @@
 #ifndef SSTABLE_H
 #define SSTABLE_H
 #include "base/result.h"
+#include "base/sorted_block.h"
 #include "tablet/memtable.h"
+#include <vector>
 namespace DummyDB
 {
 
@@ -22,6 +24,8 @@ class SSTable
 
     protected:
     private:
+        std::vector<SortedBlock>
+                            loaded_blocks;
 };
 
 } // namespace DummyDB
