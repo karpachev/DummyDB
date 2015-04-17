@@ -56,6 +56,10 @@ class ByteArray
                     _buffer = NULL;
                     _size = 0;
                 }
+                ~ByteArraySharedData() {
+                        if (_buffer)
+                            delete _buffer;
+                }
         };
 
         boost::shared_ptr<ByteArraySharedData> _data;
