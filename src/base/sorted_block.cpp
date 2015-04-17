@@ -160,15 +160,8 @@ SortedBlock::indexOfSplit(const Key& key, int index_min, int index_max, bool low
                 return index_max;
             }
         }
-        if (!min_found&&!max_found) {
-            // the whole range is of different keys.
-            if (lower_range) {
-                // In the low range the split must be the first key
-                return index_max-1;
-            } else {
-                // In the higher range the split must be the first key
-                return index_min+1;
-            }
+        if (index_min+1>=index_max) {
+            return min_found?index_min:index_max;
         }
 
 
@@ -178,20 +171,20 @@ SortedBlock::indexOfSplit(const Key& key, int index_min, int index_max, bool low
         if (min_found) {
             if(middle_found) {
                 // split must in in the [index_middle,index_max]
-                index_min = index_middle+1;
+                index_min = index_middle;
             } else {
                 // split must in in the [index_min,index_middle)
-                index_max = index_middle-1;
+                index_max = index_middle;
             }
         }
 
         if (max_found) {
             if(middle_found) {
                 // split must in in the [index_min,index_middle)
-                index_max = index_middle-1;
+                index_max = index_middle;
             } else {
                 // split must in in the [index_middle,index_max]
-                index_min = index_middle+1;
+                index_min = index_middle;
             }
         }
 

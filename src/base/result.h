@@ -22,6 +22,11 @@ struct Result
         T       value;
         bool    status;
 
+        bool    operator==(const struct Result& other) {
+            return status==other.status &&
+                    value==other.value;
+        }
+
 };
 
 typedef Result<Value> ResultValue;
