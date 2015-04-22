@@ -58,7 +58,7 @@ class ByteArray
                 }
                 ~ByteArraySharedData() {
                         if (_buffer)
-                            delete _buffer;
+                            delete []_buffer;
                 }
         };
 

@@ -10,6 +10,9 @@ namespace DummyDB
 class SSTable
 {
     public:
+        enum {
+            BLOCK_SIZE = 6144
+        };
         /// Create SSTable from MemTable
         SSTable(const MemTable& );
         /// load SSTable from file
@@ -24,8 +27,9 @@ class SSTable
 
     protected:
     private:
-        std::vector<SortedBlock>
+        std::vector< boost::shared_ptr<SortedBlock> >
                             loaded_blocks;
+        std::vector< Key >  index;
 };
 
 } // namespace DummyDB

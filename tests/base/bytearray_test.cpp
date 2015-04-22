@@ -23,6 +23,7 @@ TEST_CASE( "ByteArray class is tested", "[key/value]" ) {
             unsigned int k_size;
             bytearray.rawBuffer(&k,&k_size);
             REQUIRE( memcmp(k,keys[i],k_size)==0  );
+            delete[] k;
         }
     }
 

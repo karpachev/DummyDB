@@ -5,7 +5,7 @@ namespace DummyDB
 
 SortedBlock::SortedBlock()
 {
-    //ctor
+    block_size = 0;
 }
 
 SortedBlock::~SortedBlock()
@@ -21,7 +21,9 @@ SortedBlock::set(const Key& key, const Value& value)
         if ( key == it->first ) {
             // the key already exists - overwrite it!
             Result<Value> result(it->second);
+            block_size-= it->second.bufferSize(); // substract old value length
             it->second = value;
+            block_size+= it->second.bufferSize(); // add new value length
             result.status = true;
             return result;
         }
@@ -31,16 +33,19 @@ SortedBlock::set(const Key& key, const Value& value)
         }
     }
 
+    block_size+= key.bufferSize(); // add new key length
+    block_size+= value.bufferSize(); // add new value length
+
     block.insert(it, std::pair<Key,Value>(key,value));
     Result<Value>  result(value);
     result.status= true;
     return result;
 }
 
-bool equal_keys(const Key& a, const Key& b) {
+static bool equal_keys(const Key& a, const Key& b) {
     return a == b;
 }
-bool prefix_equal_keys(const Key& a, const Key& b) {
+static bool prefix_equal_keys(const Key& a, const Key& b) {
     return a |= b;
 }
 
@@ -53,6 +58,9 @@ SortedBlock::remove(const Key& key)
         return Result<Value>();
     }
     const int& index_found= index.value[0];
+
+    block_size-= block[index_found].first.bufferSize(); // substract removed key length
+    block_size-= block[index_found].second.bufferSize(); // substrackt removed value length
 
     Result<Value> result(block[index_found].second);
     block.erase( block.begin()+index_found );
