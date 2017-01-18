@@ -3,5 +3,6 @@
 	<Workspace title="Workspace">
 		<Project filename="DummyDB/DummyDB.cbp" />
 		<Project filename="DummyDB_Tests/DummyDB_Tests.cbp" />
+		<Project filename="../../cbp/Test/Test.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
